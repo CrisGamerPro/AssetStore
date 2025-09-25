@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda de Assets Roblox</title>
+  <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD"></script>
+</head>
+<body>
+  <h1>Tienda de Assets Roblox</h1>
+
+  <div>
+    <h2>Sistema de votacion de mapas</h2>
+    <img src="smv.png" alt="modelo" width="200">
+    <p>Un modelo diseñado para tener un sistema sencillo de votacion y generacion de mapas.</p>
+    <h2>Caracteristicas</h2>
+    <p>- Mapas ilimitados (2 aleatorios por votacion)<br>- Recuento de votos<br>- Seleccion aleatoria en caso de votos nulos o empate</p>
+    <input type="button" value="Descargar Modelo">
+    <p><b>Precio: GRATIS</b></p>
+
+  </div>
+  <br>
+    <div class="asset" >
+    <h2>Admin Panel</h2>
+    <img src="ap.png" alt="modelo" width="200">
+    <p>Un sistema de panel de administrador programado para ser un modelo profesional para ser usado en produccion.</p>
+    <h2>Caracteristicas</h2>
+    <p>- Lista de jugadores online<br>- Seleccion de usuario a travez de su User ID<br>- Sistema de expulsion de jugadores [Solo online]<br>- Sistema de baneo (Razon y dias)<br>- Sistema de anuncios locales y globales</p>
+    <p><b>Precio: $2 USD</b></p>
+
+    <div id="paypal-button-container"></div>
+  </div>
+
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '5.00' }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('¡Gracias por tu compra ' + details.payer.name.given_name + '!');
+          // Redirige a una página de descarga protegida
+          window.location.href = "/api/entrega?orderId=" + data.orderID;
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>
