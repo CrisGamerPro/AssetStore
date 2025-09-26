@@ -1,0 +1,9 @@
+{
+  "name": "rbxmodels-store",
+  "version": "1.0.0",
+  "description": "Tienda de assets.",
+  "main": "index.js",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  }
+}
