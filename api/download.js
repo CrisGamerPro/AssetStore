@@ -34,11 +34,11 @@ export default async function handler(req, res) {
 }
 
 // 👉 función auxiliar que otros endpoints pueden usar
-export function generarLink(archivo) {
+export function generarLink(archivo, baseUrl) {
   const token = Math.random().toString(36).substring(2, 12);
   tokens[token] = {
     archivo,
     expira: Date.now() + 5 * 60 * 1000 // 5 minutos
   };
-  return `https:/rbxmodels.vercel.app/api/download?token=${token}`;
+  return `${baseUrl}/api/download?token=${token}`;
 }
