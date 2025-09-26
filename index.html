@@ -26,6 +26,17 @@
     <h2>Caracteristicas</h2>
     <p>- Lista de jugadores online<br>- Seleccion de usuario a travez de su User ID<br>- Sistema de expulsion de jugadores [Solo online]<br>- Sistema de baneo (Razon y dias)<br>- Sistema de anuncios locales y globales</p>
     <p><b>Precio: $1 USD</b></p>
+    <button onclick="comprarFake()">Comprar (modo test)</button>
+
+<script>
+function comprarFake() {
+  fetch("/api/generar?archivo=espada.rbxm")
+    .then(r => r.json())
+    .then(data => {
+      window.location.href = data.link;
+    });
+}
+</script>
 
     <div id="paypal-button-container"></div>
   </div>
