@@ -41,11 +41,16 @@
       },
       onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
-          alert('¡Gracias por tu compra ' + details.payer.name.given_name + '!');
-          // Redirige a una página de descarga protegida
-          window.location.href = "/api/entrega?orderId=" + data.orderID;
-        });
-      }
+          alert("¡Gracias " + details.payer.name.given_name + "! Generando tu descarga...");
+
+         // Pedir link temporal al backend
+         fetch("/api/generar?archivo=espada.rbxm")
+        .then(r => r.json())
+        .then(data => {
+          window.location.href = data.link; // redirige al link temporal
+       });
+   });
+ }
     }).render('#paypal-button-container');
   </script>
 </body>
