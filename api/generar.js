@@ -7,9 +7,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Falta archivo" });
   }
 
-  // 🚨 Aquí deberías validar con PayPal que el pago es real
-  // Ahora lo simplificamos y siempre genera link
-  const link = generarLink(archivo);
+  // Obtener la URL base automáticamente
+  const protocol = req.headers["x-forwarded-proto"] || "https";
+  const host = req.headers.host;
+  const baseUrl = `${protocol}://${host}`;
+
+  const link = generarLink(archivo, baseUrl);
 
   res.status(200).json({ link });
 }
